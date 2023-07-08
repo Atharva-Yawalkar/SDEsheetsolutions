@@ -1,0 +1,20 @@
+#include<bits/stdc++.h>
+
+void solve(int index, int sum, vector<int> &num, int n, vector<int> &subsetSum){
+	if(index==n){
+		subsetSum.push_back(sum);
+		return;
+	}
+	// element at index is included
+	solve(index+1, sum+num[index], num, n, subsetSum);
+	// element at index is excluded
+	solve(index+1, sum, num, n, subsetSum);
+}
+vector<int> subsetSum(vector<int> &num){
+	// Write your code here.
+	vector<int> subsetSum;
+	int n=num.size();
+	solve(0, 0, num, n, subsetSum);
+	sort(subsetSum.begin(), subsetSum.end());
+	return subsetSum;	
+}

@@ -1,0 +1,23 @@
+int search(int* arr, int n, int key) {
+    // Write your code here.
+    int s=0;
+    int e=n-1;
+    int ns;
+    while(s<e){
+        int mid=s+(e-s)/2;
+        if(arr[mid]>arr[e]) s=mid+1;
+        else e=mid;
+    }
+    ns=s;
+    s=0;
+    e=n-1;
+    while(s<e){
+        int mid=s+(e-s)/2;
+        int nmid=(mid+ns)%n;
+        if(arr[nmid]==key) return nmid;
+        else if(arr[nmid]>key) e=mid;
+        else s=mid+1;
+    }
+    s = (s + ns)%n;
+    return arr[s] == key ? s : -1;
+}
